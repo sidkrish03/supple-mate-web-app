@@ -9,8 +9,12 @@ import java.util.List;
 
 @Service
 public class CustomerService {
-//    @Autowired
+    @Autowired
     private CustomerRepository customerRepository;
+
+//    public Customers addCustomer(Customers customer, List<Customers> customersList) {
+//        return customerRepository.add(customer);
+//    }
 
     public Customers saveCustomer(Customers customer) {
         return customerRepository.save(customer);

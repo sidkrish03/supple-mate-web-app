@@ -15,21 +15,44 @@ public class Customers {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    @Getter
+    private String firstName;
 
+    @Getter
+    private String lastName;
+
+    @Getter
     private String email;
 
-    // Getters and setters
+    @Getter
+    private String username;
 
+    @Getter
+    private String password;
+
+
+    // Setters
     public void setId(Long id) {
         this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setUserName(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
