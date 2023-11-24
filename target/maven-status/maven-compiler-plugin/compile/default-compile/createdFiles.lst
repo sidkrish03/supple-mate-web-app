@@ -1,0 +1,5 @@
+com\supplemateservice\SuppleMateApplication.class
+com\supplemateservice\repository\CustomerRepository.class
+com\supplemateservice\controller\SuppleMateController.class
+com\supplemateservice\model\Customers.class
+com\supplemateservice\service\CustomerService.class
