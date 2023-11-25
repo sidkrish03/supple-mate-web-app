@@ -6,6 +6,7 @@ import java.sql.Time;
 import java.util.Objects;
 
 public class SupplementEntry {
+    @Getter
     private int supplementEntryId;
     @Getter
     private DayLog dayLog;
@@ -15,10 +16,6 @@ public class SupplementEntry {
     private float supplementDosageValue;
     @Getter
     private Time entryTime;
-
-    public int setSupplementEntryId() {
-        return supplementEntryId;
-    }
 
     public void setSupplementEntryId(int supplementEntryId) {
         this.supplementEntryId = supplementEntryId;

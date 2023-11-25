@@ -1,6 +1,7 @@
 package com.supplemateservice.controller;
 
 import com.supplemateservice.model.Customers;
+import com.supplemateservice.service.AddService;
 import com.supplemateservice.service.CustomerService;
 import com.supplemateservice.service.ValidateService;
 import org.slf4j.Logger;
@@ -18,6 +19,9 @@ import java.util.Set;
 
 public class RegistrationController {
     Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    @Autowired
+    AddService addService;
 
     @Autowired
     CustomerService saveCustomer;
@@ -55,7 +59,7 @@ public class RegistrationController {
 
         addService.createNewAccount(customer);
         logger.info("-- User created --\n ID: {}, NAME: {} {}, USERNAME: {}, EMAIL: {}, CREATION TIME: {}, TIMEZONE: {}",
-                customer.getId(), customer.getFirstName(), customer.getLastName(), customer.getUsername(), customer.getEmail(), customer.getCreationTime(), customer.getTimeZone());
+                customer.getCustomerId(), customer.getFirstName(), customer.getLastName(), customer.getUsername(), customer.getEmail(), customer.getCreationTime(), customer.getTimeZone());
 
         try {
             request.login(customer.getUsername(), unencryptedPassword);

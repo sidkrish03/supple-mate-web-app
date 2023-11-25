@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -13,7 +14,7 @@ public class Customers {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long customerId;
 
     @Getter
     private String firstName;
@@ -30,10 +31,15 @@ public class Customers {
     @Getter
     private String password;
 
+    @Getter
+    private LocalDateTime creationTime;
+
+    @Getter
+    private String timeZone;
 
     // Setters
-    public void setId(Long id) {
-        this.id = id;
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 
     public void setFirstName(String firstName) {
@@ -48,11 +54,17 @@ public class Customers {
         this.email = email;
     }
 
-    public void setUserName(String username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setTimeZone(String timeZone) {
+    }
+
+    public void setCreationTime(LocalDateTime creationtimestamp) {
     }
 }

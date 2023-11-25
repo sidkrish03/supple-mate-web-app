@@ -1,6 +1,9 @@
 package com.supplemateservice.service;
 
 import com.supplemateservice.data.CustomerDao;
+import com.supplemateservice.data.DayLogDao;
+import com.supplemateservice.data.SupplementEntryDao;
+import com.supplemateservice.data.SupplementTypeDao;
 import com.supplemateservice.model.Customers;
 import com.supplemateservice.model.DayLog;
 import com.supplemateservice.model.SupplementEntry;
@@ -31,7 +34,7 @@ public class LookupServiceImpl implements LookupService{
         // DayLog implements Comparator, should be sorted in ascending order by logDate
         public List<DayLog> getDayLogsForCustomer(int customerId){
             List<DayLog> dayLogs = logDao.getAllDayLogs().stream()
-                    .filter(log -> log.getCustomer().getUserAccountId() == customerId)
+                    .filter(log -> log.getCustomer().getCustomerId() == customerId)
                     .sorted()
                     .collect(Collectors.toList());
             return dayLogs;
@@ -39,7 +42,7 @@ public class LookupServiceImpl implements LookupService{
 
         // sorted (natural order)
         public List<LocalDate> getDatesForCustomer(int customerId){
-            return getDayLogsForUser(customerId).stream()
+            return getDayLogsForCustomer(customerId).stream()
                     .map(DayLog::getLogDate)
                     .sorted()
                     .collect(Collectors.toList());
@@ -68,7 +71,7 @@ public class LookupServiceImpl implements LookupService{
 
         public List<SupplementType> getSupplementTypesForCustomer(int customerId){
             return supplementTypeDao.getAllSupplementTypes().stream()
-                    .filter(type -> type.getCustomer().getCustomerAccountId() == customerId)
+                    .filter(type -> type.getCustomer().getCustomerId() == customerId)
                     .collect(Collectors.toList());
         }
 

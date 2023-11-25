@@ -17,7 +17,7 @@ public class DayLog {
         this.dayLogId = dayLogId;
     }
 
-    public void setUser(Customers customer) {
+    public void setCustomer(Customers customer) {
         this.customer = customer;
     }
 

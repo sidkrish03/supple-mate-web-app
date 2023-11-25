@@ -1,5 +1,11 @@
-com\supplemateservice\SuppleMateApplication.class
-com\supplemateservice\repository\CustomerRepository.class
-com\supplemateservice\controller\SuppleMateController.class
+com\supplemateservice\data\SupplementEntryDao.class
+com\supplemateservice\model\SupplementType.class
+com\supplemateservice\exceptions\InvalidPasswordException.class
+com\supplemateservice\data\SupplementEntryDaoImpl.class
+com\supplemateservice\model\SupplementEntry.class
+com\supplemateservice\exceptions\InvalidEmailException.class
+com\supplemateservice\data\DayLogDao.class
+com\supplemateservice\data\SupplementEntryDaoImpl$SupplementEntryMapper.class
+com\supplemateservice\data\SupplementTypeDao.class
+com\supplemateservice\model\DayLog.class
 com\supplemateservice\model\Customers.class
-com\supplemateservice\service\CustomerService.class
