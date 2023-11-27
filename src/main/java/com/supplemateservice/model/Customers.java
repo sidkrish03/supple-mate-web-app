@@ -5,6 +5,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -14,7 +16,7 @@ public class Customers {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long customerId;
+    private int customerId;
 
     @Getter
     private String firstName;
@@ -37,8 +39,11 @@ public class Customers {
     @Getter
     private String timeZone;
 
+    @Getter
+    private Set<Role> roles = new HashSet();
+
     // Setters
-    public void setCustomerId(Long customerId) {
+    public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
 
@@ -63,8 +68,14 @@ public class Customers {
     }
 
     public void setTimeZone(String timeZone) {
+        this.timeZone = timeZone;
     }
 
-    public void setCreationTime(LocalDateTime creationtimestamp) {
+    public void setCreationTime(LocalDateTime creationTime) {
+        this.creationTime = creationTime;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }

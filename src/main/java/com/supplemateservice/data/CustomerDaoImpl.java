@@ -28,7 +28,7 @@ public class CustomerDaoImpl implements CustomerDao {
         @Override
         public Customers mapRow(ResultSet rs, int i) throws SQLException {
             Customers customer = new Customers();
-            customer.setCustomerId(rs.getLong("useraccountid"));
+            customer.setCustomerId(rs.getInt("useraccountid"));
             customer.setUsername(rs.getString("username"));
             customer.setPassword(rs.getString("userpassword"));
             customer.setFirstName(rs.getString("firstname"));
@@ -51,9 +51,9 @@ public class CustomerDaoImpl implements CustomerDao {
         jdbc.update(INSERT_USER, customer.getUsername(), customer.getPassword(), customer.getFirstName(),
                 customer.getLastName(), customer.getEmail(), creationTimestamp, customer.getTimeZone());
         // set user's creation time and ID
-        long customerId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
+        int customerId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         customer.setCustomerId(customerId);
-        creationTimestamp = (jdbc.queryForObject("SELECT creationtimestamp FROM UserAccount WHERE useraccountid = ?", Timestamp.class, userId));
+        creationTimestamp = (jdbc.queryForObject("SELECT creationtimestamp FROM UserAccount WHERE useraccountid = ?", Timestamp.class, customerId));
         customer.setCreationTime(creationTimestamp.toLocalDateTime());
 
 
@@ -70,7 +70,7 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
-    public Customers getCustomerById(long customerId) {
+    public Customers getCustomerAccountById(int customerId) {
         try{
             final String SELECT_USER_BY_ID = "SELECT * FROM UserAccount WHERE useraccountid = ?";
             Customers customer = jdbc.queryForObject(SELECT_USER_BY_ID, new UserAccountMapper(), customerId);
