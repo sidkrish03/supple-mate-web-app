@@ -23,7 +23,6 @@ public class SuppleMateController {
 
     @RequestMapping("/login")
     public String SuppleMateLogin() {
-        // TODO: 11/9/2023 - Add User Login Page details for this API - Username, Password fields.
         return "Please enter your user name and password to login.";
     }
 
