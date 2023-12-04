@@ -2,12 +2,12 @@ package com.supplemateservice.controller;
 
 import com.supplemateservice.model.Customers;
 import com.supplemateservice.service.AddService;
-import com.supplemateservice.service.CustomerService;
 import com.supplemateservice.service.ValidateService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,15 +16,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashSet;
 import java.util.Set;
-
+@Controller
 public class RegistrationController {
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     AddService addService;
-
-    @Autowired
-    CustomerService saveCustomer;
 
     @Autowired
     ValidateService validateService;

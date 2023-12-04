@@ -37,7 +37,7 @@ public class DayLogDaoImpl implements DayLogDao{
 
     @Override
     public DayLog addDayLog(DayLog dayLog) {
-        final String INSERT_DAYLOG = "INSERT INTO DayLog(useraccountid, logdate, notes)"
+        final String INSERT_DAYLOG = "INSERT INTO DayLog(customeraccountid, logdate, notes)"
                 + " VALUES (?, ?, ?)";
         jdbc.update(INSERT_DAYLOG, dayLog.getCustomer().getCustomerId(), dayLog.getLogDate(),
                 dayLog.getNotes());

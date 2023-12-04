@@ -66,16 +66,16 @@ public class SuppleMateController {
 
     @GetMapping("/test")
     public ResponseEntity<String> test() {
-        return new ResponseEntity<>("this is a test", HttpStatus.OK);
+        return new ResponseEntity<>("This is a test", HttpStatus.OK);
     }
 
     @PostMapping("/addSupplementTypes/{customerId}")
     public ResponseEntity<List<SupplementType>> createMetricSettings(@PathVariable int customerId, @RequestBody SupplementType[] supplementTypes) throws InvalidSupplementTypeException{
-        // lookup the user using the ID from the PathVariable and assign to each MetricType
+        // lookup the user using the ID from the PathVariable and assign to each SupplementType
         updateService.populateSupplementTypesWithCustomer(customerId, supplementTypes);
-        // validate user's initial MetricType settings
+        // validate user's initial SupplementType settings
         validateService.validateSupplementTypes(customerId, supplementTypes);
-        // add MetricTypes to DB, get them back with IDs
+        // add SupplementTypes to DB, get them back with IDs
         List<SupplementType> populatedTypeList = addService.addSupplementTypes(supplementTypes);
         return new ResponseEntity(populatedTypeList, HttpStatus.CREATED);
     }
@@ -106,7 +106,7 @@ public class SuppleMateController {
         return new ResponseEntity(lookupService.getDatesForCustomer(customerId), HttpStatus.OK);
     }
 
-    // get all metric types for a user (FOR GRAPH VIEW)
+    // get all supplement types for a customer (FOR GRAPH VIEW)
     @GetMapping("/supplementTypes/{customerId}")
     public ResponseEntity<List<SupplementType>> getAllSupplementTypesForCustomer(@PathVariable int customerId){
         List<SupplementType> types = lookupService.getSupplementTypesForCustomer(customerId);
@@ -114,17 +114,17 @@ public class SuppleMateController {
         return new ResponseEntity(lookupService.getSupplementTypesForCustomer(customerId), HttpStatus.OK);
     }
 
-    // get all metric entries for a user (FOR GRAPH VIEW)
+    // get all supplement entries for a user (FOR GRAPH VIEW)
     @GetMapping("/supplementEntries/{customerId}")
     public ResponseEntity<List<List<SupplementEntry>>> getAllMetricEntriesForCustomer(@PathVariable int customerId){
         // Get all types for a user
         List<SupplementType> userTypes = lookupService.getSupplementTypesForCustomer(customerId);
-        // List of MetricEntry-containing Lists
+        // List of SupplementEntry-containing Lists
         List<List<SupplementEntry>> entryLists = new ArrayList();
         // for each type the user has, get all the entries for that type in a list
         for (SupplementType type : userTypes){
             List<SupplementEntry> entryList = lookupService.getSupplementEntriesForType(type.getSupplementTypeId());
-            // add all entries for that type to the list of MetricEntry-containing lists
+            // add all entries for that type to the list of SupplementEntry-containing lists
             entryLists.add(entryList);
         }
         return new ResponseEntity(entryLists, HttpStatus.OK);
