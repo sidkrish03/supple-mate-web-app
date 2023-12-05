@@ -4,11 +4,11 @@ C:\Users\siddh\IdeaProjects\supple-mate-web-app\src\main\java\com\supplemateserv
 C:\Users\siddh\IdeaProjects\supple-mate-web-app\src\main\java\com\supplemateservice\service\UpdateService.java
 C:\Users\siddh\IdeaProjects\supple-mate-web-app\src\main\java\com\supplemateservice\controller\Error.java
 C:\Users\siddh\IdeaProjects\supple-mate-web-app\src\main\java\com\supplemateservice\model\SupplementType.java
+C:\Users\siddh\IdeaProjects\supple-mate-web-app\src\main\java\com\supplemateservice\controller\AdminController.java
 C:\Users\siddh\IdeaProjects\supple-mate-web-app\src\main\java\com\supplemateservice\security\CustomStrictHttpFirewall.java
 C:\Users\siddh\IdeaProjects\supple-mate-web-app\src\main\java\com\supplemateservice\data\CustomerDao.java
 C:\Users\siddh\IdeaProjects\supple-mate-web-app\src\main\java\com\supplemateservice\exceptions\InvalidEmailException.java
 C:\Users\siddh\IdeaProjects\supple-mate-web-app\src\main\java\com\supplemateservice\model\Customers.java
-C:\Users\siddh\IdeaProjects\supple-mate-web-app\src\main\java\com\supplemateservice\SuppleMateApplication.java
 C:\Users\siddh\IdeaProjects\supple-mate-web-app\src\main\java\com\supplemateservice\controller\RegistrationController.java
 C:\Users\siddh\IdeaProjects\supple-mate-web-app\src\main\java\com\supplemateservice\data\RoleDaoImpl.java
 C:\Users\siddh\IdeaProjects\supple-mate-web-app\src\main\java\com\supplemateservice\service\UserDetailsServiceImpl.java
@@ -24,6 +24,7 @@ C:\Users\siddh\IdeaProjects\supple-mate-web-app\src\main\java\com\supplemateserv
 C:\Users\siddh\IdeaProjects\supple-mate-web-app\src\main\java\com\supplemateservice\service\DeleteServiceImpl.java
 C:\Users\siddh\IdeaProjects\supple-mate-web-app\src\main\java\com\supplemateservice\controller\SuppleMateController.java
 C:\Users\siddh\IdeaProjects\supple-mate-web-app\src\main\java\com\supplemateservice\service\AddServiceImpl.java
+C:\Users\siddh\IdeaProjects\supple-mate-web-app\src\main\java\com\supplemateservice\controller\SuppleMateApplication.java
 C:\Users\siddh\IdeaProjects\supple-mate-web-app\src\main\java\com\supplemateservice\controller\ExceptionHandlerController.java
 C:\Users\siddh\IdeaProjects\supple-mate-web-app\src\main\java\com\supplemateservice\data\CustomerDaoImpl.java
 C:\Users\siddh\IdeaProjects\supple-mate-web-app\src\main\java\com\supplemateservice\service\LookupService.java

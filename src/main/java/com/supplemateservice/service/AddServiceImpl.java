@@ -43,12 +43,7 @@ public class AddServiceImpl implements AddService {
         return customerDao.addCustomerAccount(customer);
     }
 
-    @Override
-    public List<SupplementType> addSupplementTypes(SupplementType... types) {
-        return null;
-    }
-
-    public List<SupplementType> addSupplementType(SupplementType... types){
+    public List<SupplementType> addSupplementTypes(SupplementType... types){
         // list that will hold SupplementTypes after having IDs assigned
         List<SupplementType> populatedTypeList = new ArrayList();
         for (SupplementType type : types){

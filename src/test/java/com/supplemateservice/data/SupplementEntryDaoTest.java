@@ -1,4 +1,4 @@
-package data;
+package com.supplemateservice.data;
 
 import com.supplemateservice.data.SupplementEntryDao;
 import com.supplemateservice.model.SupplementEntry;

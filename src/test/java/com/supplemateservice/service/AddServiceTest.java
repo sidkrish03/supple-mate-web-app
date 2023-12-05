@@ -1,12 +1,10 @@
-package service;
+package com.supplemateservice.service;
 
-import com.supplemateservice.data.DayLogDao;
 import com.supplemateservice.model.Customers;
 import com.supplemateservice.model.DayLog;
 import com.supplemateservice.model.SupplementEntry;
 import com.supplemateservice.model.SupplementType;
 import com.supplemateservice.service.AddService;
-import com.supplemateservice.service.DeleteService;
 import com.supplemateservice.service.LookupService;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,34 +16,29 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
-public class DeleteServiceTest {
+public class AddServiceTest {
 
     @Autowired
     JdbcTemplate jdbc;
 
     @Autowired
-    DeleteService deleteService;
+    LookupService lookupService;
 
     @Autowired
     AddService addService;
 
-    @Autowired
-    LookupService lookupService;
-
-    @Autowired
-    DayLogDao logDao;
-
-    public DeleteServiceTest() {
+    public AddServiceTest() {
     }
 
     @BeforeAll
     public static void setUpClass() {
+
     }
 
     @AfterAll
@@ -114,10 +107,29 @@ public class DeleteServiceTest {
     }
 
     /**
-     * Test of deleteSupplementEntry method, of class DeleteService.
+     * Test of createNewAccount method, of class AddService.
      */
     @Test
-    public void testDeleteSupplementEntry() {
+    public void testCreateNewAccount() {
+        Customers customer = new Customers();
+        customer.setUsername("testname");
+        customer.setPassword("testpassword");
+        customer.setFirstName("testFirstname");
+        customer.setLastName("testLastname");
+        customer.setEmail(("testemail@email.com"));
+        customer.setCreationTime(LocalDateTime.now());
+        customer.setTimeZone("EST");
+
+        Customers customerFromDB = addService.createNewAccount(customer);
+        customer.setCustomerId(1);
+        assertEquals(customer, customerFromDB);
+    }
+
+    /**
+     * Test of addSupplementTypes method, of class AddService.
+     */
+    @Test
+    public void testAddSupplementTypes() {
         Customers customer = new Customers();
         customer.setUsername("testname");
         customer.setPassword("testpassword");
@@ -129,7 +141,68 @@ public class DeleteServiceTest {
         customer = addService.createNewAccount(customer); // has ID and Role now
 
         SupplementType supplementType1 = new SupplementType();
-        supplementType1.setSupplementName("Vitamin");
+        supplementType1.setSupplementName("Iron");
+        supplementType1.setScale(10);
+        supplementType1.setUser(customer);
+        SupplementType supplementType1FromDB = addService.addSupplementType(supplementType1);
+        assertEquals(1, supplementType1FromDB.getSupplementTypeId());
+        supplementType1FromDB.setSupplementTypeId(1);
+        assertEquals(supplementType1, supplementType1FromDB);
+
+        SupplementType supplementType2 = new SupplementType();
+        supplementType2.setSupplementName("Vitamin");
+        supplementType2.setUnit("g");
+        supplementType2.setUser(customer);
+        SupplementType supplementType2FromDB = addService.addSupplementType(supplementType2);
+        assertEquals(2, supplementType2FromDB.getSupplementTypeId());
+        supplementType2.setSupplementTypeId(2);
+        assertEquals(supplementType2, supplementType2FromDB);
+
+        assertEquals(2, lookupService.getSupplementTypesForCustomer(customer.getCustomerId()).size());
+    }
+
+    /**
+     * Test of addDayLog method, of class AddService.
+     */
+    @Test
+    public void testAddDayLog() {
+        Customers customer = new Customers();
+        customer.setUsername("testname");
+        customer.setPassword("testpassword");
+        customer.setFirstName("testFirstname");
+        customer.setLastName("testLastname");
+        customer.setEmail(("testemail@email.com"));
+        customer.setCreationTime(LocalDateTime.now());
+        customer.setTimeZone("EST");
+        customer = addService.createNewAccount(customer); // has ID and Role now
+
+        DayLog log = new DayLog();
+        log.setCustomer(customer);
+        log.setNotes("test notes");
+        log.setLogDate(LocalDate.now());
+        DayLog logFromDB = addService.addDayLog(log);
+        assertEquals(1, logFromDB.getDayLogId());
+        log.setDayLogId(1);
+        assertEquals(log, logFromDB);
+    }
+
+    /**
+     * Test of addSupplementEntry method, of class AddService.
+     */
+    @Test
+    public void testAddSupplementEntry() {
+        Customers customer = new Customers();
+        customer.setUsername("testname");
+        customer.setPassword("testpassword");
+        customer.setFirstName("testFirstname");
+        customer.setLastName("testLastname");
+        customer.setEmail(("testemail@email.com"));
+        customer.setCreationTime(LocalDateTime.now());
+        customer.setTimeZone("EST");
+        customer = addService.createNewAccount(customer); // has ID and Role now
+
+        SupplementType supplementType1 = new SupplementType();
+        supplementType1.setSupplementName("Zinc");
         supplementType1.setScale(10);
         supplementType1.setUser(customer);
         supplementType1 = addService.addSupplementType(supplementType1);
@@ -143,21 +216,20 @@ public class DeleteServiceTest {
         SupplementEntry supplementEntry = new SupplementEntry();
         supplementEntry.setDayLog(log);
         supplementEntry.setSupplementType(supplementType1);
-        supplementEntry.setSupplementDosageValue(1000); // Measured in mg
+        supplementEntry.setSupplementDosageValue(500); //Measured in mg
         supplementEntry.setEntryTime(Time.valueOf("00:00:00"));
-        supplementEntry = addService.addSupplementEntry(supplementEntry);
-        assertNotNull(supplementEntry);
+        SupplementEntry entryFromDB = addService.addSupplementEntry(supplementEntry);
+        assertEquals(1, entryFromDB.getSupplementEntryId());
+        supplementEntry.setSupplementEntryId(1);
+        assertEquals(supplementEntry, entryFromDB);
 
-        deleteService.deleteSupplementEntry(supplementEntry.getSupplementEntryId());
-        supplementEntry = lookupService.getSupplementEntryById(supplementEntry.getSupplementEntryId());
-        assertNull(supplementEntry);
     }
 
     /**
-     * Test of deleteDayLog method, of class DeleteService.
+     * Test of fillDayLogGaps method, of class AddService.
      */
     @Test
-    public void testDeleteDayLog() {
+    public void testFillDayLogGaps() {
         Customers customer = new Customers();
         customer.setUsername("testname");
         customer.setPassword("testpassword");
@@ -171,40 +243,20 @@ public class DeleteServiceTest {
         DayLog log = new DayLog();
         log.setCustomer(customer);
         log.setNotes("test notes");
-        log.setLogDate(LocalDate.now());
+        log.setLogDate(LocalDate.of(2020, Month.JANUARY, 1));
         log = addService.addDayLog(log);
-        assertNotNull(log);
 
-        deleteService.deleteDayLog(log.getDayLogId());
-        log = logDao.getDayLogById(log.getDayLogId());
-        assertNull(log);
+        DayLog log1 = new DayLog();
+        log1.setCustomer(customer);
+        log1.setNotes("more test notes");
+        log1.setLogDate(LocalDate.of(2020, Month.JANUARY, 4));
+        log1 = addService.addDayLog(log1);
+
+        // verify only these dayLogs exist so far
+        assertEquals(2, lookupService.getDatesForCustomer(customer.getCustomerId()).size());
+        addService.fillDayLogGaps(customer.getCustomerId());
+        assertEquals(4, lookupService.getDatesForCustomer(customer.getCustomerId()).size());
     }
 
-    /**
-     * Test of deleteSupplementType method, of class DeleteService.
-     */
-    @Test
-    public void testDeleteMetricType() {
-        Customers customer = new Customers();
-        customer.setUsername("testname");
-        customer.setPassword("testpassword");
-        customer.setFirstName("testFirstname");
-        customer.setLastName("testLastname");
-        customer.setEmail(("testemail@email.com"));
-        customer.setCreationTime(LocalDateTime.now());
-        customer.setTimeZone("EST");
-        customer = addService.createNewAccount(customer); // has ID and Role now
-
-        SupplementType supplementType = new SupplementType();
-        supplementType.setSupplementName("subjectiveTestMetric");
-        supplementType.setScale(10);
-        supplementType.setUser(customer);
-        supplementType = addService.addSupplementType(supplementType);
-        assertNotNull(supplementType);
-
-        deleteService.deleteSupplementType(supplementType.getSupplementTypeId());
-        supplementType = lookupService.getSupplementTypeById(supplementType.getSupplementTypeId());
-        assertNull(supplementType);
-    }
 
 }

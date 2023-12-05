@@ -20,6 +20,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "*", allowCredentials = "true", allowedHeaders = "*")
 public class SuppleMateController {
 
     Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -59,7 +60,7 @@ public class SuppleMateController {
         return "Please enter your user name and password to login.";
     }
 
-    @RequestMapping("/home")
+    @GetMapping({"/", "/home"})
     public String SuppleMateHome() {
         return "Welcome to SuppleMate Home Page.";
     }

@@ -17,13 +17,13 @@ com\supplemateservice\service\UpdateServiceImpl.class
 com\supplemateservice\data\RoleDaoImpl.class
 com\supplemateservice\configuration\AppConfig.class
 com\supplemateservice\data\CustomerDaoImpl.class
+com\supplemateservice\controller\AdminController.class
 com\supplemateservice\controller\ContentController.class
 com\supplemateservice\controller\RegistrationController.class
 com\supplemateservice\security\PasswordEncoder.class
 com\supplemateservice\security\SuppleMateWebSecurityConfig.class
 com\supplemateservice\data\CustomerDaoImpl$UserAccountMapper.class
 com\supplemateservice\model\SupplementType.class
-com\supplemateservice\SuppleMateApplication.class
 com\supplemateservice\data\SupplementEntryDaoImpl$SupplementEntryMapper.class
 com\supplemateservice\data\DayLogDaoImpl$DayLogMapper.class
 com\supplemateservice\exceptions\InvalidSupplementTypeException.class
@@ -34,6 +34,7 @@ com\supplemateservice\data\DayLogDao.class
 com\supplemateservice\security\FirewalledResponse.class
 com\supplemateservice\service\AddServiceImpl.class
 com\supplemateservice\service\ValidateServiceImpl.class
+com\supplemateservice\controller\SuppleMateApplication.class
 com\supplemateservice\data\DayLogDaoImpl.class
 com\supplemateservice\controller\ExceptionHandlerController.class
 com\supplemateservice\service\ValidateService.class

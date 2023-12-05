@@ -1,4 +1,4 @@
-package service;
+package com.supplemateservice.service;
 
 import com.supplemateservice.model.Customers;
 import com.supplemateservice.model.DayLog;
