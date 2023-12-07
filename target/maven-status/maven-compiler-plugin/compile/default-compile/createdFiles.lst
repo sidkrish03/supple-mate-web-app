@@ -24,6 +24,7 @@ com\supplemateservice\security\PasswordEncoder.class
 com\supplemateservice\security\SuppleMateWebSecurityConfig.class
 com\supplemateservice\data\CustomerDaoImpl$UserAccountMapper.class
 com\supplemateservice\model\SupplementType.class
+com\supplemateservice\SuppleMateApplication.class
 com\supplemateservice\data\SupplementEntryDaoImpl$SupplementEntryMapper.class
 com\supplemateservice\data\DayLogDaoImpl$DayLogMapper.class
 com\supplemateservice\exceptions\InvalidSupplementTypeException.class
@@ -34,7 +35,6 @@ com\supplemateservice\data\DayLogDao.class
 com\supplemateservice\security\FirewalledResponse.class
 com\supplemateservice\service\AddServiceImpl.class
 com\supplemateservice\service\ValidateServiceImpl.class
-com\supplemateservice\controller\SuppleMateApplication.class
 com\supplemateservice\data\DayLogDaoImpl.class
 com\supplemateservice\controller\ExceptionHandlerController.class
 com\supplemateservice\service\ValidateService.class

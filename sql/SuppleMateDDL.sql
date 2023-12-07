@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS wellbeingtrackerpersonal;
+DROP DATABASE IF EXISTS supplematedb;
 
-CREATE DATABASE wellbeingtrackerpersonal;
-USE wellbeingtrackerpersonal;
+CREATE DATABASE supplematedb;
+USE supplematedb;
 
 CREATE TABLE Customer(
                             CustomerId INT PRIMARY KEY AUTO_INCREMENT,
